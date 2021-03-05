@@ -1,6 +1,6 @@
 import { Builder } from './index';
 
-const makeSut = () => new Builder();
+const makeSut = () => new Builder('teste');
 
 describe('Builder Composite Test', () => {
 	test("Can access it's properties", () => {
@@ -40,4 +40,17 @@ describe('Builder Composite Test', () => {
 		expect(sut.structure.flags.batata.type).toEqual('string');
 		expect(countFlag()).toEqual(1);
 	});
+
+	// test('Test type', () => {
+	// 	const sut = makeSut()
+	// 		.positional('a', { type: 'number', required: false })
+	// 		.positional('b', { type: 'string' })
+	// 		.positional('c', { type: 'boolean', default: 'boolean' })
+	// 		.positional('d', { type: 'boolean', required: true, default: 'boolean' })
+	// 		.positional('e', { type: 'boolean', required: true });
+
+	// 	const argv = sut.parse();
+
+	// 	argv.a;
+	// });
 });

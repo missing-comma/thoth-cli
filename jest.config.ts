@@ -1,4 +1,3 @@
-// jest.config.ts
 import { Config } from '@jest/types';
 type JestConfig = Config.InitialOptions;
 

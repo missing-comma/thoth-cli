@@ -4,18 +4,10 @@ interface AdditionalFields {
 	index: number;
 }
 
-export type Positional<
-	K extends string = string,
-	T extends DataEntry.SupportedTypes = DataEntry.SupportedTypes,
-	Req extends boolean = false
-> = DataEntry<K, T, Req> & AdditionalFields;
+export type Positional<Key extends string, V extends DataEntry.Values> = DataEntry<Key, V> & AdditionalFields;
 
 export namespace Positional {
-	export type Create<
-		ST extends DataEntry.SupportedTypes = DataEntry.SupportedTypes,
-		Req extends boolean = false
-	> = Omit<Positional<string, ST, Req>, 'index' | 'key'>;
+	export type Default = Positional<string, DataEntry.Values>;
 
-	export type AppendArg<T, P extends Positional<string, DataEntry.SupportedTypes, boolean>> = T &
-		DataEntry.ToArgField<P>;
+	export type Create<V extends DataEntry.Values = DataEntry.Values> = Omit<Positional<string, V>, 'index' | 'key'>;
 }

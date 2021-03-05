@@ -1,0 +1,12 @@
+{
+	"extends": "../tsconfig.json",
+	"compilerOptions": {
+		"outDir": "./dist",
+		"baseUrl": "./src",
+		"rootDir": "./src",
+		"paths": {
+			"~cli/*": ["../node_modules/thoth-cli/dist/*"]
+		}
+	},
+	"exclude": ["node_modules", "dist", "test", "**/__tests__/*", "jest.config.*"]
+}

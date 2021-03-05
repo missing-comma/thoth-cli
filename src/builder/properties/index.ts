@@ -1,13 +1,15 @@
 import { Instance } from '../loader';
 
-function initialValueSetter(this: Instance): void {
+function initialValueSetter(this: Instance, name: string) {
 	this.data = {
+		name,
 		flags: {},
 		positionals: [],
 	};
+	this.yargModifiers = [];
 	this.errors = [];
 }
 
-export function bindProperties(ctx: Instance) {
-	initialValueSetter.bind(ctx)();
+export function bindProperties(ctx: Instance, name: string) {
+	initialValueSetter.bind(ctx)(name);
 }

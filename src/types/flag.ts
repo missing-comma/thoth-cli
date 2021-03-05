@@ -2,17 +2,10 @@ import { DataEntry } from './data-entry';
 
 interface AdditionalFields {}
 
-export type Flag<
-	K extends string = string,
-	T extends DataEntry.SupportedTypes = DataEntry.SupportedTypes,
-	Req extends boolean = false
-> = DataEntry<K, T, Req> & AdditionalFields;
+export type Flag<Key extends string, V extends DataEntry.Values> = DataEntry<Key, V> & AdditionalFields;
 
 export namespace Flag {
-	export type Create<
-		ST extends DataEntry.SupportedTypes = DataEntry.SupportedTypes,
-		Req extends boolean = false
-	> = Omit<Flag<string, ST, Req>, 'key'>;
+	export type Default = Flag<string, DataEntry.Values>;
 
-	export type AppendArg<T, P extends Flag<string, DataEntry.SupportedTypes, boolean>> = T & DataEntry.ToArgField<P>;
+	export type Create<V extends DataEntry.Values = DataEntry.Values> = Omit<Flag<string, V>, 'key'>;
 }

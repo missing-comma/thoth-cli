@@ -105,3 +105,8 @@ dist
 /build
 
 .npmrc
+
+test-usage/*
+!test-usage/src
+!test-usage/*.json
+!test-usage/*.bat

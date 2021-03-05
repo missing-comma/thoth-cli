@@ -5,15 +5,16 @@
 		"lib": ["es2018", "es7", "es6", "dom"],
 		"strict": true,
 		"allowSyntheticDefaultImports": true,
+		"declaration": true,
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
 		"strictNullChecks": true,
-		"outDir": "./dist",
+		"outDir": "dist",
+		"rootDir": "./",
 		"baseUrl": "./src",
-		"rootDir": "./src",
 		"paths": {
 			"~cli/*": ["./*"]
 		}
 	},
-	"exclude": ["node_modules", "dist", "test", "**/__tests__/*"]
+	"exclude": ["node_modules", "dist", "jest.config.*", "test-usage"]
 }

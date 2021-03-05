@@ -27,3 +27,7 @@ export interface Select<K extends keyof any> {
 	 */
 	<T>(select: Partial<Record<K, T>> & { default: T }): T;
 }
+
+export type Writeable<T> = { -readonly [P in keyof T]: T[P] };
+
+export type DeepWriteable<T> = { -readonly [P in keyof T]: DeepWriteable<T[P]> };
