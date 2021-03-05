@@ -10,6 +10,8 @@
 		"no-unused-expression": false,
 		"no-namespace": false,
 		"prefer-rest-params": 0,
+		"unified-signatures": false,
+		"max-classes-per-file": false,
 		"@typescript-eslint/interface-name-prefix": [
 			"warn",
 			{

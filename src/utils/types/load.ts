@@ -31,3 +31,14 @@ export interface Select<K extends keyof any> {
 export type Writeable<T> = { -readonly [P in keyof T]: T[P] };
 
 export type DeepWriteable<T> = { -readonly [P in keyof T]: DeepWriteable<T[P]> };
+
+export type DeepPartial<T> = { [K in keyof T]?: DeepPartial<T[K]> };
+
+export type EitherAtFn<T, Value> = {
+	(key: keyof T, ...srcs: DeepPartial<T>[]): Value;
+	(key: string, ...srcs: DeepPartial<T>[]): Value;
+};
+
+export type MakeEitherAtFn<T, Value> = {
+	(...srcs: DeepPartial<T>[]): (key: string) => Value;
+};

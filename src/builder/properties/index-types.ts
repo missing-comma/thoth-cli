@@ -1,5 +1,6 @@
 import { Yargs } from '~cli/protocols';
-import { Positional, Flag, IError } from '~cli/types';
+import { IError } from '~cli/types';
+import { BuilderData } from '~cli/types/builder-data';
 import { BuilderDependencies } from './dependencies';
 
 type PublicProperties = {};
@@ -9,17 +10,7 @@ abstract class PrivateProperties {
 
 	protected yargModifiers!: Array<(yargs: Yargs) => Yargs>;
 
-	protected data!: {
-		name: string;
-
-		version?: string;
-
-		description?: string;
-
-		positionals: Positional.Default[];
-
-		flags: Record<string, Flag.Default>;
-	};
+	protected data!: BuilderData;
 
 	protected errors!: IError[];
 }
