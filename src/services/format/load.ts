@@ -1,14 +1,16 @@
 import chalk from 'chalk';
-import { Palette, PaletteFactoryAdapter, PaletteFactory } from './painter';
+import { PaletteFactory, Painter, Palette } from './painter';
+import { CompositePainterCreator } from './painter/palettes';
 import { GeneralFunctionsFormat, GeneralMethods } from './general-functions';
 import { FormatFn, Input } from './protocol';
 import * as Help from './helpers';
+
 export class FormatServiceClass extends GeneralFunctionsFormat {
+	private readonly painter: CompositePainterCreator;
 	public readonly help = Help;
-	public readonly palette: Palette;
 	constructor(paletteFactory: PaletteFactory) {
 		super();
-		this.palette = paletteFactory.make();
+		this.painter = paletteFactory.make();
 	}
 
 	apply = (input: Input | undefined, ...styles: Array<FormatFn | GeneralMethods>): string => {
@@ -44,11 +46,15 @@ export class FormatServiceClass extends GeneralFunctionsFormat {
 
 		return combinedFn;
 	};
+
+	paint = (k: keyof Palette): FormatFn => {
+		return this.painter.get(k);
+	};
 }
 
 export const makeFormat = () =>
 	new FormatServiceClass(
-		new PaletteFactoryAdapter({
+		new PaletteFactory({
 			chalk,
 		}),
 	);

@@ -1,35 +1,33 @@
 import { PainterUtils } from '~cli/services/format/helpers/painter-utils';
-import { Utils } from '~cli/utils';
+import { prepend, Utils } from '~cli/utils';
 import { HelpPainter } from './schema';
 
 type PartialHelp = Utils.DeepPartial<HelpPainter>;
 
-const customFallthrough: PartialHelp = {
-	flag: {
-		required: (isRequired?: boolean) => (isRequired ? 'required' : ''),
-	},
-	positional: {
-		required: (isRequired?: boolean) => (isRequired ? 'required' : ''),
-	},
-};
-
 export function makePainter() {
-	const { eitherAt } = new PainterUtils(customFallthrough);
+	const { emptyFn } = new PainterUtils();
 
-	return (painter: PartialHelp = {}) => ({
-		name: eitherAt('name', painter),
-		version: eitherAt('version', painter),
-		example: eitherAt('example', painter),
-		usage: eitherAt('example', painter),
-		flag: {
-			alias: eitherAt('flag.alias', painter),
-			description: eitherAt('flag.description', painter),
-			required: eitherAt('flag.required', painter),
-		},
-		positional: {
-			alias: eitherAt('positional.alias', painter),
-			description: eitherAt('positional.description', painter),
-			required: eitherAt('positional.required', painter),
-		},
-	});
+	return (painter: PartialHelp = {}): HelpPainter => {
+		const base: HelpPainter = {
+			name: emptyFn,
+			version: emptyFn,
+			example: emptyFn,
+			usage: emptyFn,
+			...prepend('flag', {
+				alias: emptyFn,
+				description: emptyFn,
+				required: emptyFn,
+			}),
+			...prepend('positional', {
+				alias: emptyFn,
+				description: emptyFn,
+				required: emptyFn,
+			}),
+		};
+
+		return {
+			...base,
+			...(painter as HelpPainter),
+		};
+	};
 }

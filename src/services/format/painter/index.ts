@@ -1,18 +1,25 @@
 import { Chalk } from 'chalk';
-import { PaletteFactory, Palette } from './protocol';
+import { PainterCreator } from '../protocol';
 
+import { CompositePainter, CompositePainterCreator } from './palettes';
+import { DataEntryPainterCreatorAdapter } from './palettes/data-type';
 import { HelpPainterCreatorAdapter } from './palettes/help';
+import { CommonPainterCreatorAdapter } from './palettes/common';
+export { CompositePainter as Palette } from './palettes';
 
-export class PaletteFactoryAdapter implements PaletteFactory {
+export type Painter = PainterCreator<CompositePainter>;
+
+export class PaletteFactory {
 	private readonly chalk: Chalk;
 	constructor(deps: { chalk: Chalk }) {
 		this.chalk = deps.chalk;
 	}
 
-	make = (): Palette => {
-		const Help = new HelpPainterCreatorAdapter(this.chalk);
-		return { Help };
+	make = (): CompositePainterCreator => {
+		const help = new HelpPainterCreatorAdapter(this.chalk);
+		const dataEntry = new DataEntryPainterCreatorAdapter(this.chalk);
+		const common = new CommonPainterCreatorAdapter(this.chalk);
+
+		return new CompositePainterCreator(help, dataEntry, common);
 	};
 }
-
-export * from './protocol';

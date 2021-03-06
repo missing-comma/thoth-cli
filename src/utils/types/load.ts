@@ -42,3 +42,9 @@ export type EitherAtFn<T, Value> = {
 export type MakeEitherAtFn<T, Value> = {
 	(...srcs: DeepPartial<T>[]): (key: string) => Value;
 };
+
+type IsStr<S> = S extends string ? S : never;
+
+export type Prepend<Key extends string, T extends Record<string, any>, Join extends string = '.'> = {
+	[K in keyof T as `${IsStr<Key>}${IsStr<Join>}${IsStr<K>}`]: T[K];
+};

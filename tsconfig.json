@@ -10,11 +10,11 @@
 		"resolveJsonModule": true,
 		"strictNullChecks": true,
 		"outDir": "dist",
-		"rootDir": "./",
+		"rootDir": "./src",
 		"baseUrl": "./src",
 		"paths": {
 			"~cli/*": ["./*"]
 		}
 	},
-	"exclude": ["node_modules", "dist", "jest.config.*", "test-usage"]
+	"exclude": ["node_modules", "dist", "test", "**/__tests__/*", "jest.config.*", "test-usage", "src/usage.ts"]
 }

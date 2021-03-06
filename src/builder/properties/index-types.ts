@@ -2,6 +2,7 @@ import { Yargs } from '~cli/protocols';
 import { IError } from '~cli/types';
 import { BuilderData } from '~cli/types/builder-data';
 import { BuilderDependencies } from './dependencies';
+import { AllMiddlewares } from '~cli/middlewares';
 
 type PublicProperties = {};
 
@@ -13,6 +14,8 @@ abstract class PrivateProperties {
 	protected data!: BuilderData;
 
 	protected errors!: IError[];
+
+	protected middlewares!: AllMiddlewares[];
 }
 
 export namespace BuilderProps {

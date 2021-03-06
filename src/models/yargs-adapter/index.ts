@@ -2,6 +2,7 @@ import { Argv } from 'yargs';
 import { Yargs } from '~cli/protocols/yargs';
 import { Flag, Positional } from '~cli/types';
 import { Option } from '../option';
+import * as helper from './helper';
 
 export class YargsAdapter<T = {}> implements Yargs {
 	private y: Argv<T>;
@@ -11,6 +12,7 @@ export class YargsAdapter<T = {}> implements Yargs {
 	}
 
 	public option = (data: Flag.Default) => {
+		data.alias = data.alias || [helper.aliasFromKeyGenerator(data.key)];
 		const opt = new Option(data);
 		this.y = this.y.option(opt.data.key, opt.mapFlag());
 		return this;

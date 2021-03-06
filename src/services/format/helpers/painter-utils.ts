@@ -2,7 +2,7 @@ import { FormatFn } from '../protocol';
 import { path } from 'ramda';
 import { Utils } from '~cli/utils';
 
-const emptyFormat: FormatFn = (value?: string | number | boolean) => {
+export const emptyFormat: FormatFn = (value?: string | number | boolean) => {
 	if (value === 0) return '0';
 	return value ? String(value) : '';
 };
@@ -29,6 +29,8 @@ export class PainterUtils<T> {
 		});
 		return value;
 	};
+
+	public readonly emptyFn = emptyFormat;
 
 	public readonly makeEitherAt: Utils.MakeEitherAtFn<T, FormatFn> = (...srcs: any[]) => {
 		return (key: keyof T | string) => {

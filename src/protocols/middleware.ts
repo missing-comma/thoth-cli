@@ -1,8 +1,8 @@
 import { BuilderData, IError } from '~cli/types';
 import { Yargs } from './yargs';
 
-export interface Middleware {
-	(deps: Middleware.Dependencies): {
+export interface Middleware<X = {}> {
+	(deps: Middleware.Dependencies<X>): {
 		handler<T = {}>(build: Yargs<T>): Yargs<T>;
 	};
 }

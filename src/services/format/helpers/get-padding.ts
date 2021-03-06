@@ -3,6 +3,6 @@
 // }
 
 export const getPad = (source: string, size: number, fill: string = ' ') => {
-	const padSize = Math.max(source.length - size, 0);
+	const padSize = Math.max(size - source.length, 0);
 	return padSize ? fill.repeat(padSize) : '';
 };

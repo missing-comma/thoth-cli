@@ -1,4 +1,4 @@
-import { command as addCommand } from '~cli/index';
+import { addCommand } from '~cli/index';
 
 function mockArgv(...cmds: Array<string | number>) {
 	process.argv = ['node-path', 'script-path', ...cmds.map(String)];

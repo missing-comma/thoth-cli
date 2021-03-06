@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import { handleEmpty, checkSupport } from '../helpers';
 
 import { FormatFn, Input } from '../protocol';
@@ -21,6 +22,16 @@ export class GeneralFunctionsFormat {
 
 	dotProd = asFormatFn('dotProd', (str: string): string => {
 		return `<${str}>`;
+	});
+
+	padSides = handleEmpty((str: Input): string => {
+		return ` ${str} `;
+	});
+
+	underline = (str?: Input) => chalk.underline(str);
+
+	quotationMarks = handleEmpty((str: Input): string => {
+		return `"${str}"`;
 	});
 }
 

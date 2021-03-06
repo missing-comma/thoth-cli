@@ -14,7 +14,7 @@ export function positional(this: Instance, key: string, value: Positional.Create
 	};
 
 	this.data.positionals.push(data);
-	this.yargModifiers.push((y) => y.option(data));
+	this.yargModifiers.push((y) => y.positional(data));
 
 	return this;
 }
