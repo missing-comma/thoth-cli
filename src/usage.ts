@@ -22,7 +22,7 @@ function main() {
 			choices: ['a', 'b', 'c', 'd'],
 		});
 
-	mockArgv('--batata', 2, 'oi', 2, 'gilmar', 'b');
+	// mockArgv('--batata', 2, 'oi', 2, 'gilmar', 'b');
 
 	console.log(cmd.parse());
 }

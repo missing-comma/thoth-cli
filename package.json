@@ -1,6 +1,6 @@
 {
 	"name": "@missing-comma/thoth-cli",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "Command Line Helper Lib",
 	"main": "./dist/index.js",
 	"module": "./dist/index.js",
@@ -28,7 +28,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/AlexandreMPDias/thoth-cli.git"
+		"url": "git+https://github.com/missing-comma/thoth-cli.git"
 	},
 	"keywords": [
 		"cli"
@@ -36,9 +36,9 @@
 	"author": "AlexandreMPDias",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/AlexandreMPDias/thoth-cli/issues"
+		"url": "https://github.com/missing-comma/thoth-cli/issues"
 	},
-	"homepage": "https://github.com/AlexandreMPDias/thoth-cli#readme",
+	"homepage": "https://github.com/missing-comma/thoth-cli#readme",
 	"devDependencies": {
 		"@types/axios": "^0.14.0",
 		"@types/jest": "^26.0.20",
@@ -52,14 +52,7 @@
 		"jest-extended": "^0.11.5",
 		"lint-staged": "^10.5.3",
 		"prettier": "^2.2.1",
-		"supertest": "^6.1.3",
-		"ts-jest": "^26.5.0",
-		"ts-node": "^9.1.1",
-		"tsc-watch": "^4.2.9",
-		"tscpaths": "^0.0.9",
-		"tslint": "^6.1.3",
-		"tslint-config-prettier": "^1.18.0",
-		"typescript": "^4.2.2"
+		"supertest": "^6.1.3"
 	},
 	"dependencies": {
 		"chalk": "^4.1.0",

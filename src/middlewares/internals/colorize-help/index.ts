@@ -9,15 +9,27 @@ export const colorizeHelp = ({ data }: Middleware.Dependencies<AdditionalDepende
 	const colorize = new ColorizedHelpAdapter(data);
 	return {
 		handler<T = {}>(build: Yargs<T>): Yargs<T> {
-			build.modify((y) =>
-				y.fail((msg: string, err: Error) => {
-					const helpMsg = colorize.parse();
+			let helpShownCount = 0;
+			build.modify((y) => {
+				return y
+					.help(false)
+					.showHelpOnFail(false)
+					.fail((msg: string, err: Error) => {
+						if (helpShownCount >= 1) {
+							return;
+						}
+						helpShownCount++;
+						let helpOrVersion = false;
+						if (process.argv.some((argv) => argv.match(/^(--help)|(-h)$/))) {
+							helpOrVersion = true;
+						}
 
-					console.log(helpMsg);
-					console.log();
-					console.log(Format.paint('common.error')(msg));
-				}),
-			);
+						const helpMsg = colorize.parse();
+						console.log(helpMsg);
+						console.log();
+						!helpOrVersion && console.log(Format.paint('common.error')(msg));
+					});
+			});
 
 			return build;
 		},

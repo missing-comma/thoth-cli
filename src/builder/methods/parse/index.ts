@@ -1,4 +1,5 @@
 import { pipe } from 'ramda';
+import { argv } from 'yargs';
 import { parseMiddlewares } from '~cli/middlewares';
 import { Yargs } from '~cli/protocols/yargs';
 import { Format } from '~cli/services/format';
@@ -30,10 +31,7 @@ export function parse(this: Instance, cmdLine?: string[], parent?: Yargs): any {
 	const Manager = this.deps.manager;
 
 	const initialYargs = Manager.new(cmdLine, parent);
-
 	const yargs = pipe(applyInitial.bind(this), applyModifiers.bind(this), applyMiddlewares.bind(this))(initialYargs);
-
-	yargs.yargs.middleware(this.validate, true);
 
 	return yargs.yargs.parse();
 }

@@ -1,5 +1,4 @@
 import './config/polyfills';
-import './usage';
 
 export * from '~cli/protocols';
 export * from '~cli/types';

@@ -4,7 +4,7 @@ function mockArgv(...cmds: Array<string | number>) {
 	process.argv = ['node-path', 'script-path', ...cmds.map(String)];
 }
 
-describe('Integration Tests', () => {
+describe.skip('Integration Tests', () => {
 	test('Uses process.argv if no name is defined', () => {
 		const cmd = addCommand().flag('batata', {
 			type: 'string',
